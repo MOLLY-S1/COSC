@@ -1,4 +1,4 @@
-"""Assignment Question #6"""
+"""Assignment Question #7"""
 
 
 def trophic_class(trophic_level_index):
@@ -30,17 +30,29 @@ def number_in_trophic_class(tli3_values, classification):
     return len(lakes)
 
 
-# MAIN ROUTINE
-tli3_list_1 = [4.1061, 2.54561, 4.16276,
-               2.33801, 6.71792, 5.54457,
-               6.49795, 2.1, 1.2, 1.4, 0.9,
-               3.8, 3.0]
-number = number_in_trophic_class(tli3_list_1, 'Oligotrophic')
-print(f'{number} were Oligotrophic.')
+def print_trophic_class_summary(tli3_values):
+    """Printing trophic class summary from lowest to highest"""
+    states = ['Hypertrophic',
+              'Supertrophic',
+              'Eutrophic',
+              'Mesotrophic',
+              'Oligotrophic',
+              'Microtrophic',
+              'Ultra-microtrophic']
+    print_list = []
+    lake_num = 0
+    for state in states:
+        lakes = number_in_trophic_class(tli3_values, state)
+        print_list.append(f"{lakes:3} lakes were {state}")
+        lake_num += lakes
 
+    print(f"Summary for the {lake_num} lakes:\n")
+    for i in print_list:
+        print(i)
+
+ 
 tli3_list_1 = [4.1061, 2.54561, 4.16276,
                2.33801, 6.71792, 5.54457,
                6.49795, 2.1, 1.2, 1.4, 0.9,
                3.8, 3.0]
-number = number_in_trophic_class(tli3_list_1, 'Microtrophic')
-print(f'{number} were Microtrophic.')
+print_trophic_class_summary(tli3_list_1)
