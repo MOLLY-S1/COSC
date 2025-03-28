@@ -50,9 +50,13 @@ def print_trophic_class_summary(tli3_values):
     for i in print_list:
         print(i)
 
- 
+
+# MAIN ROUTINE
 tli3_list_1 = [4.1061, 2.54561, 4.16276,
                2.33801, 6.71792, 5.54457,
                6.49795, 2.1, 1.2, 1.4, 0.9,
                3.8, 3.0]
 print_trophic_class_summary(tli3_list_1)
+
+tli3_list_0 = [1.1, 2.1, 5.1]
+print_trophic_class_summary(tli3_list_0)
