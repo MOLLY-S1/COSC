@@ -1,4 +1,28 @@
-"""Assignment Question #7"""
+"""Assignment Question 10"""
+
+
+def get_lake_names():
+    """Getting lake names until quit entered"""
+    lakes = []
+    lake = input("Enter lake name (or q to quit): ")
+    while lake != 'q':
+        lakes.append(lake)
+        lake = input("Enter lake name (or q to quit): ")
+
+    return lakes
+
+
+def get_lake_indices(lake_names):
+    """Takes input for tli value for all lakes in list"""
+    i = 0
+    tli_list = []
+    while i < len(lake_names):
+        for lake in lake_names:
+            tli = float(input(f"Enter TLI for {lake}: "))
+            tli_list.append(tli)
+            i += 1
+
+    return tli_list
 
 
 def trophic_class(trophic_level_index):
@@ -58,10 +82,34 @@ def print_trophic_class_summary(tli3_values):
         print(i)
 
 
-# MAIN ROUTINE
-tli3_list_1 = [4.1061, 2.54561, 4.16276,
-               2.33801, 6.71792, 5.54457,
-               6.49795, 2.1, 1.2, 1.4, 0.9,
-               3.8, 3.0]
-print_trophic_class_summary(tli3_list_1)
+def main():
+    """Main function to include all other calls. Asks the user to enter a
+    series of lake names then asks the user to enter a TLI value for each lake.
+    The function then prints out the water quality level for each lake,
+    followed by a summary showing the number lakes at each trophic class"""
+    # Get lake names
+    lakes = get_lake_names()
+    print()
 
+    # Get lake indices
+    indices = get_lake_indices(lakes)
+    print()
+
+    # Print Lake water summary
+    print("Water quality summary\n"
+          "---------------------")
+    i = 0
+    while i < len(lakes):
+        for tli in indices:
+            classification = trophic_class(tli)
+            print(f"{lakes[i]}: {classification}")
+            i += 1
+    print()
+
+    # Print the classification for the lakes
+    print_trophic_class_summary(indices)
+    print()
+
+
+# MAIN ROUTINE
+main()

@@ -2,8 +2,11 @@
 
 
 def trophic_class(trophic_level_index):
-    """Classing trophics"""
-    if 5 <= trophic_level_index < 6:
+    """Classing trophic levels"""
+    if 6 <= trophic_level_index:
+        classification = "Hypertrophic"
+        return classification
+    elif 5 <= trophic_level_index < 6:
         classification = "Supertrophic"
         return classification
     elif 4 <= trophic_level_index < 5:
