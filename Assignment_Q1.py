@@ -57,3 +57,7 @@ def trophic_level_index(chla, tn, tp):
 # Lake Rotoehu
 result = trophic_level_index(7.1, 302.75, 28.993)
 print(f'{result}')
+
+# Lake Ellesmere
+tli3 = trophic_level_index(80, 2300, 182)
+print(f'{tli3:.4f}')

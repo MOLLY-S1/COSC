@@ -36,6 +36,8 @@ def trophic_class(trophic_level_index):
     elif trophic_level_index < 1:
         classification = "Ultra-microtrophic"
         return classification
+    else:
+        return None
 
 # MAIN ROUTINE
 classification = trophic_class(4.5)
