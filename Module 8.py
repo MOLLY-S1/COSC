@@ -14,10 +14,10 @@ def get_input():
     try:
         file = open(filename)
         contents = file.read()
-        return contents
     except FileNotFoundError:
         print(f"The file {filename} was not found.")
         return None
+    return re.findall('[a-zA-Z]+', contents)
 
 
 def extraction(contents):
@@ -34,36 +34,61 @@ def extraction(contents):
     return length_word
 
 
-def looping(diction):
-    """Loop until fail"""
+def add_word(word_dict, word):
+    """f"""
+    length = len(word)
+    word_dict.setdefault(length, set()).add(word.lower())
+
+
+def make_dic(words):
+    """f"""
+    length_word = {}
+    for word in words:
+        add_word(length_word, word)
+    return length_word
+
+
+def word_length():
+    """f"""
     answer = input("Please enter desired length or 'q' to quit: ")
-    answer = int(answer)
-    while answer not in diction.keys() or answer != 'q':
-        if str(answer) == "q":
+    if answer == "q":
+        return 'q'
+    try:
+        return int(answer)
+    except ValueError:
+        print(f"Invalid word length: {answer}")
+        return None
+
+def printing(word_dict, length):
+    """f"""
+    words = word_dict.get(length)
+    if not words:
+        print(f"There are no words of length {length} in the file.")
+        return
+    print(f"Words of length {length}:")
+    for word in sorted(words):
+        print(f"    {word}")
+
+
+
+
+
+
+
+def main():
+    """f"""
+    words = get_input()
+    if words is None:
+        return
+    word_dict = make_dic(words)
+    while True:
+        result = word_length()
+        if result == 'q':
             break
-        try:
-            answer = int(answer)
-            answering = diction[answer]
-            answern = sorted(answering)
-            print(f"Words of length {answer}:")
-            for answers in answern:
-                print(f"    {answers}")
-        except IndexError:
-            answer = int(answer)
-            print("There are no words of length {integer} in the file.")
-        except ValueError:
-            answer = int(answer)
-            print("Invalid word length: {string_user_entered}")
-        answer = input("Please enter desired length or 'q' to quit: ")
+        if isinstance(result, int):
+            printing(word_dict, result)
 
+main()
 
-
-
-
-
-
-
-contents = get_input()
-diction = extraction(contents)
-looping(diction)
+f
 
