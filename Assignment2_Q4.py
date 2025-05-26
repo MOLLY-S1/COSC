@@ -34,17 +34,27 @@ def load_raw_data_dict(filename):
     full_data = {}
     file = open(filename)
     data = file.read().splitlines()
-    file.close()
-    headers = data[0, :]
+    print(data)
 
-    for i in range(0, ):
-        full_data[headers[i]] = list(data[:, i])
+    file.close()
+    headers = data[0]
     headers = list(headers.split(","))
     for header in headers:
         full_data[header] = []
-    for line in data:
-        line = line.split(",")
-        print(line)
+    print(headers)
+    print(len(headers), "headers len")
+
+
+    for i in range(1,len(headers)-1):
+        specific = list(data[i].split(","))
+        print("specific", specific)
+        print(i)
+        for i in range(len(specific)):
+            if headers[i] in full_data.keys():
+                full_data[headers[i]].append(list(specific[i][i]))
+            else:
+                full_data[headers[i]] = [(list(specific[i]))]
+
 
     return full_data
 
