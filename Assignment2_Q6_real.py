@@ -64,19 +64,29 @@ def load_raw_data_dict(filename):
     return spreadsheet
 
 
-def draw_bars_snapshot_tli3(filename):
-    """Drawing bar-graphs"""
+def draw_bars_tli3_by_region(filename, region):
+    """Drawing the bar graph of lakes within region"""
+    # Loading data and tli3 values
     data = load_raw_data_dict(filename)
     tli3_values = raw_data_to_tli3s(data)
-    xs = np.arange(len(tli3_values)) # x-positions of the bars
 
+    # Finding lakes in region
+    regions = data["lake_region"]
+    lake_names = []
+    regional_tli3 = []
+    for i in range(len(regions)):
+        if regions[i] == region:
+            lake_names.append(data["lake_name"][i])
+            regional_tli3.append(tli3_values[i])
+
+    xs = np.arange(len(regional_tli3))  # x-positions of the bars
+
+    # Plotting
     axes = plt.axes()
-    axes.bar(xs, tli3_values, tick_label=data["lake_name"], color="indigo")
+    axes.bar(xs, regional_tli3, tick_label=lake_names, color="indigo")
     axes.tick_params(axis='x', labelrotation=90)
-    axes.set_title(f"Snapshot TLI3s from {filename}")
+    axes.set_title(f"Snapshot TLI3s from {filename} - {region}")
     axes.set_xlabel('Lake')
     axes.set_ylabel('TLI3')
     plt.tight_layout()
     plt.show()
-
-draw_bars_snapshot_tli3("snapshot_02.csv")
