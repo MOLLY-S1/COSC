@@ -44,24 +44,27 @@ def load_raw_data_dict(filename):
     return spreadsheet
 
 
-def draw_time_series_all(filename):
-    """take a filename and plot lines of the TLI3 versus time, for each lake
-    in that file."""
+def draw_time_series_fitted(filename, lake_name):
+    """plots the TLI3 against time for the given lake_name and computes a
+    linear fit for the data and plots this fitted data."""
     data = load_raw_data_dict(filename)
-    lakes = list(data.keys())
-    lakes.remove("year")
-    xs = float_array(data["year"])
+    specific_lake = float_array(data[lake_name])
+
     axes = plt.axes()
-    for lake in lakes:
-        ys = float_array(data[lake])
 
-        # Plotting
-        axes.plot(xs, ys, label=lake)
+    xs = float_array(data["year"])
+    ys = specific_lake
+    axes.plot(xs, ys, marker="o", color="blue", label="actual")
 
-    axes.set_title(f"TLI3 over time for lakes in {filename}")
+    line = np.polyfit(xs, ys, 1)
+    line_y = line[0] * np.array(xs) + line[1]
+    axes.plot(xs, line_y, linestyle="dotted", color="green", label="fitted")
+
+    axes.set_title(f"TLI3 over time for {lake_name}")
     axes.set_xlabel("Year")
     axes.set_ylabel('TLI3')
     axes.legend()
     plt.grid()
     plt.show()
+
 
