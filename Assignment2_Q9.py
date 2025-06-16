@@ -57,6 +57,9 @@ def draw_time_series_fitted(filename, lake_name):
     axes.plot(xs, ys, marker="o", color="blue", label="actual")
 
     line = np.polyfit(xs, ys, 1)
+    print(f"line {line}")
+    print(f"line[0] {line[0]}")
+    print(f"line[1] {line[1]}")
     line_y = line[0] * np.array(xs) + line[1]
     axes.plot(xs, line_y, linestyle="dotted", color="green", label="fitted")
 
@@ -67,4 +70,4 @@ def draw_time_series_fitted(filename, lake_name):
     plt.grid()
     plt.show()
 
-
+draw_time_series_fitted("time_series_01.csv", "lake2")

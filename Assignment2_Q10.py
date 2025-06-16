@@ -20,10 +20,13 @@ def get_input():
 
 def get_lake(filename):
     """gets chosen lake"""
+    # Loading data
     data = load_raw_data_dict(filename)
     lakes = list(data.keys())
     lakes = sorted(lakes)
     lakes.remove("year")
+
+    # Printing lakes and getting input
     print('Pick a lake:')
     for lake in lakes:
         print(f"    {lake}")
