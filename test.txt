@@ -1,5 +1,9 @@
-3, 7: vase
-11, 2: half-crown coin
-12, 5: leather boot
-17, 7: hand-cranked phonograph
-3, 7: half-crown coin
+Booth_Name,Party,Vote_Count
+Booth1,Party1,7
+Booth1,Party2,4
+Booth1,Party3,1
+Booth2,Party1,5
+Booth2,Party3,5
+Booth3,Party2,7
+Booth3,Party1,4
+Booth3,Party3,5
