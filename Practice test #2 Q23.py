@@ -29,4 +29,4 @@ def histogram_of_speeds(filename):
     plt.show()
 
 
-histogram_of_speeds("test.txt")
+histogram_of_speeds("winddata.txt")
